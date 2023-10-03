@@ -14,18 +14,12 @@
 #      [{katsayi: 3, not:60, created_at: "12/24/2018, 05:59:31"},
 #       {katsayi:3, not:90, created_at: "12/24/2018, 05:59:31"}] } ]
 #  input example : add student_no student_name stars grade
-# def index_finder():
-#     index = (i for i, sname in data_list)
-#     if sname == data_list[1]:
-#         return index
-#     print(index)
-# add  123   Mustafa  fen   *****  100
+
+# add 123 Mustafa fen ***** 100
 # add  555   Murat  fen   *****  10
 
-from tools import crud_student, crud_grades, print_data
+from tools import crud_student, crud_grades, print_info, print_grades
 
-
-student_list = []
 
 while True:
     try:
@@ -34,7 +28,9 @@ while True:
         if teacher_input == "q":
             print("Application exited.")
             break
+
         splitted_data = teacher_input.split()
+
         if splitted_data[0] == "add":
             crud_student(splitted_data)
             crud_grades(splitted_data)
@@ -43,11 +39,10 @@ while True:
             crud_grades(splitted_data)
 
         elif splitted_data[0] == "print":
-            print_data(splitted_data[1])
+            print_info(splitted_data[1])
+            print_grades(splitted_data[1])
         else:
-            print("Wrong input")
+            print("Please check the student data you entered.")
 
-    except:
-
-        print("Something went wrong. Try again")
-
+    except Exception as error:
+        print(f"An error occurred: {error}")
